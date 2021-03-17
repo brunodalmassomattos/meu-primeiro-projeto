@@ -25,20 +25,36 @@ import com.udamy.enums.TipoEnum;
 public class Lancamentos implements Serializable {
 	private static final long serialVersionUID = 8690526119766135223L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data", nullable = false)
 	private Date data;
+
+	@Column(name = "descricao", nullable = true)
 	private String descricao;
+
+	@Column(name = "localizacao", nullable = false)
 	private String localizacao;
+
+	@Column(name = "datacriacao", nullable = false)
 	private Date dataCriacao;
+
+	@Column(name = "dataatualizacao", nullable = false)
 	private Date dataAtualizacao;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo", nullable = false)
 	private TipoEnum tipo;
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Funcionario funcionario;
 
 	public Lancamentos() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -47,8 +63,6 @@ public class Lancamentos implements Serializable {
 		this.id = id;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "data", nullable = false)
 	public Date getData() {
 		return data;
 	}
@@ -57,7 +71,6 @@ public class Lancamentos implements Serializable {
 		this.data = data;
 	}
 
-	@Column(name = "descricao", nullable = true)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -66,7 +79,6 @@ public class Lancamentos implements Serializable {
 		this.descricao = descricao;
 	}
 
-	@Column(name = "localizacao", nullable = false)
 	public String getLocalizacao() {
 		return localizacao;
 	}
@@ -75,7 +87,6 @@ public class Lancamentos implements Serializable {
 		this.localizacao = localizacao;
 	}
 
-	@Column(name = "data-criacao", nullable = false)
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
@@ -84,7 +95,6 @@ public class Lancamentos implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	@Column(name = "data-atualizacao", nullable = false)
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
@@ -93,8 +103,6 @@ public class Lancamentos implements Serializable {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo", nullable = false)
 	public TipoEnum getTipo() {
 		return tipo;
 	}
@@ -107,7 +115,6 @@ public class Lancamentos implements Serializable {
 		return funcionario;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}

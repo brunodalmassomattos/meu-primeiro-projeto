@@ -2,6 +2,7 @@ package com.udamy.api.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,20 +19,30 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "empresa")
 public class Empresa implements Serializable {
-	private static final long serialVersionUID = -2912018491586332501L;
+	private static final long serialVersionUID = 2912018491586332501L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@Column(name = "razaosocial", nullable = false)
 	private String razaoSocial;
-	private String CNPJ;
+
+	@Column(name = "cnpj", nullable = false)
+	private String cnpj;
+
+	@Column(name = "datacriacao", nullable = false)
 	private Date dataCriacao;
+
+	@Column(name = "razaoatualizacao", nullable = false)
 	private Date dataAtualizacao;
-	private java.util.List<Funcionario> funcionarios;
+
+	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Funcionario> funcionarios;
 
 	public Empresa() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -40,7 +51,6 @@ public class Empresa implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "razao-social", nullable = false)
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
@@ -49,16 +59,14 @@ public class Empresa implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 
-	@Column(name = "cnpj", nullable = false)
 	public String getCNPJ() {
-		return CNPJ;
+		return cnpj;
 	}
 
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+	public void setCNPJ(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
-	@Column(name = "data-criacao", nullable = false)
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
@@ -67,7 +75,6 @@ public class Empresa implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	@Column(name = "razao-atualizacao", nullable = false)
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
@@ -76,7 +83,6 @@ public class Empresa implements Serializable {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	@OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public java.util.List<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
@@ -99,7 +105,7 @@ public class Empresa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Empresa [" + "id=" + id + ", razaoSocial=" + razaoSocial + ", CNPJ=" + CNPJ + ", dataCriacao="
+		return "Empresa [" + "id=" + id + ", razaoSocial=" + razaoSocial + ", CNPJ=" + cnpj + ", dataCriacao="
 				+ dataCriacao + ", dataAtualizacao=" + dataAtualizacao + "]";
 	}
 

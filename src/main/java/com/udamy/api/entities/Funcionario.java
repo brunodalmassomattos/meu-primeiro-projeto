@@ -25,27 +25,52 @@ import com.udamy.enums.PerfilEnum;
 @Entity
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
-	private static final long serialVersionUID = -7970730614498225201L;
+	private static final long serialVersionUID = 7970730614498225201L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@Column(name = "nome", nullable = false)
 	private String nome;
+
+	@Column(name = "email", nullable = false)
 	private String email;
+
+	@Column(name = "senha", nullable = false)
 	private String senha;
-	private String CPF;
+
+	@Column(name = "cpf", nullable = false)
+	private String cpf;
+
+	@Column(name = "valorhora", nullable = true)
 	private BigDecimal valorHora;
+
+	@Column(name = "qtdhorastrabalhodia", nullable = true)
 	private float qtdHorasTrabalhoDia;
+
+	@Column(name = "qtdhorasalmoco", nullable = true)
 	private float qtdHorasAlmoco;
+
+	@Column(name = "datacriacao", nullable = false)
 	private Date dataCriacao;
+
+	@Column(name = "dataatualizacao", nullable = false)
 	private Date dataAtualizacao;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "peril", nullable = false)
 	private PerfilEnum perfil;
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Empresa empresa;
+
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Lancamentos> lancamentos;
 
 	public Funcionario() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -54,7 +79,6 @@ public class Funcionario implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "nome", nullable = false)
 	public String getNome() {
 		return nome;
 	}
@@ -63,7 +87,6 @@ public class Funcionario implements Serializable {
 		this.nome = nome;
 	}
 
-	@Column(name = "email", nullable = false)
 	public String getEmail() {
 		return email;
 	}
@@ -72,7 +95,6 @@ public class Funcionario implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "senha", nullable = false)
 	public String getSenha() {
 		return senha;
 	}
@@ -81,16 +103,14 @@ public class Funcionario implements Serializable {
 		this.senha = senha;
 	}
 
-	@Column(name = "cpf", nullable = false)
 	public String getCPF() {
-		return CPF;
+		return cpf;
 	}
 
 	public void setCPF(String cPF) {
-		CPF = cPF;
+		cpf = cPF;
 	}
 
-	@Column(name = "valor-hora", nullable = true)
 	public BigDecimal getValorHora() {
 		return valorHora;
 	}
@@ -99,7 +119,6 @@ public class Funcionario implements Serializable {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qtd-horas-trabalho-dia", nullable = true)
 	public float getQtdHorasTrabalhoDia() {
 		return qtdHorasTrabalhoDia;
 	}
@@ -108,7 +127,6 @@ public class Funcionario implements Serializable {
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
-	@Column(name = "qtd-horas-almoco", nullable = true)
 	public float getQtdHorasAlmoco() {
 		return qtdHorasAlmoco;
 	}
@@ -117,7 +135,6 @@ public class Funcionario implements Serializable {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 
-	@Column(name = "data-criacao", nullable = false)
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
@@ -126,7 +143,6 @@ public class Funcionario implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	@Column(name = "data-atualizacao", nullable = false)
 	public Date getDataAtualizacao() {
 		return dataAtualizacao;
 	}
@@ -135,7 +151,6 @@ public class Funcionario implements Serializable {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -144,7 +159,6 @@ public class Funcionario implements Serializable {
 		this.empresa = empresa;
 	}
 
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Lancamentos> getLancamentos() {
 		return lancamentos;
 	}
@@ -153,8 +167,6 @@ public class Funcionario implements Serializable {
 		this.lancamentos = lancamentos;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "peril", nullable = false)
 	public PerfilEnum getPerfil() {
 		return perfil;
 	}
@@ -178,7 +190,7 @@ public class Funcionario implements Serializable {
 	@Override
 	public String toString() {
 		return "Funcionario [" + "id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", CPF="
-				+ CPF + ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia
+				+ cpf + ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia
 				+ ", qtdHorasAlmoco=" + qtdHorasAlmoco + ", dataCriacao=" + dataCriacao + ", dataAtualizacao="
 				+ dataAtualizacao + "]";
 	}

@@ -1,6 +1,16 @@
 package com.udamy.enums;
 
 public enum PerfilEnum {
-	ROLE_ADMIN,
-	ROLE_USUARIO;
+	ROLE_ADMIN, ROLE_USUARIO;
+
+	private String descricao;
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 }
