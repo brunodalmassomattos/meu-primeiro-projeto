@@ -20,7 +20,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import com.udamy.enums.PerfilEnum;
+import com.udamy.api.enums.PerfilEnum;
 
 @Entity
 @Table(name = "funcionario")

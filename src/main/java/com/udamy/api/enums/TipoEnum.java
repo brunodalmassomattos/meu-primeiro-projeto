@@ -1,4 +1,4 @@
-package com.udamy.enums;
+package com.udamy.api.enums;
 
 public enum TipoEnum {
 	INICIO_TRABALHO,

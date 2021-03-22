@@ -9,8 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.udamy.api.entities.Empresa;
+import com.udamy.api.entities.Usuario;
+import com.udamy.api.enums.PerfilEnum;
 import com.udamy.api.repositories.IEmpresaRepository;
+import com.udamy.api.repositories.IUsuarioRepository;
 import com.udamy.api.service.EmpresaService;
+import com.udamy.api.utils.SenhaUtils;
 
 @SpringBootApplication
 public class MeuPrimeiroProjetoApplication {
@@ -18,6 +22,9 @@ public class MeuPrimeiroProjetoApplication {
 
 	@Autowired
 	private IEmpresaRepository empresaRepository;
+	
+	@Autowired
+	private IUsuarioRepository usuarioRepository; 
 
 	@Autowired
 	private EmpresaService empresaService;
@@ -71,6 +78,24 @@ public class MeuPrimeiroProjetoApplication {
 	public CommandLineRunner commandLineRunner2() {
 		return args -> {
 			this.empresaService.testeService();
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner commandLineRunner3() {
+		return args -> {
+			
+			Usuario usuario = new Usuario();
+			usuario.setEmail("usuario@email.com");
+			usuario.setPerfil(PerfilEnum.ROLE_USUARIO);
+			usuario.setSenha(SenhaUtils.gerarBCrypt("123456"));
+			this.usuarioRepository.save(usuario);
+			
+			Usuario admin = new Usuario();
+			admin.setEmail("admin@email.com");
+			admin.setPerfil(PerfilEnum.ROLE_ADMIN);
+			admin.setSenha(SenhaUtils.gerarBCrypt("123456"));
+			this.usuarioRepository.save(admin);
 		};
 	}
 
