@@ -31,23 +31,23 @@ public class MeuPrimeiroProjetoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MeuPrimeiroProjetoApplication.class, args);
-
-//		System.out.println("Meu primeiro projeto Srping");
 	}
 
+	/*
 	@Bean
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
-		/*	String senhaEncoded = SenhaUtils.gerarBCrypt(SENHA);
+			String senhaEncoded = SenhaUtils.gerarBCrypt(SENHA);
 			System.out.println("Primeira encriptada:" + senhaEncoded);
 
 			System.out.println("Senha confere: " + SenhaUtils.senhaValida(SENHA, senhaEncoded));
 
 			System.out.println("Segunda encriptada:" + SenhaUtils.gerarBCrypt(SENHA));
 			System.out.println("Senha confere: " + SenhaUtils.senhaValida(SENHA, senhaEncoded));
-		*/};
+		};
 	}
-
+	
+	
 	@Bean
 	public CommandLineRunner commandLineRunner1() {
 		return args -> {
@@ -80,7 +80,7 @@ public class MeuPrimeiroProjetoApplication {
 			this.empresaService.testeService();
 		};
 	}
-	
+	*/
 	@Bean
 	public CommandLineRunner commandLineRunner3() {
 		return args -> {
@@ -96,6 +96,8 @@ public class MeuPrimeiroProjetoApplication {
 			admin.setPerfil(PerfilEnum.ROLE_ADMIN);
 			admin.setSenha(SenhaUtils.gerarBCrypt("123456"));
 			this.usuarioRepository.save(admin);
+			
+			this.usuarioRepository.findAll().forEach(System.out::println);
 		};
 	}
 
