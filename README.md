@@ -1,4 +1,4 @@
 # meu-primeiro-projeto
 Meu primeiro projeto GitHub
 
-I love :coffe: :pizza: 
+I love :coffee: :pizza: :pasta:
